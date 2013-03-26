@@ -9,12 +9,10 @@ public class RomanNumeralConverter {
   private int currentValue;
 
   public RomanNumeralConverter(final String literal) {
-
     makeNumeralArrayFromLiteral(literal);
   }
 
   public RomanNumeralConverter(final int value) {
-
     currentValue = value;
   }
 
@@ -36,12 +34,10 @@ public class RomanNumeralConverter {
   }
 
   private boolean isFollowingLiteralGreater(final int index) {
-
     return index < numerals.length - 1 && numerals[index + 1].isGreaterThan(numerals[index]);
   }
 
   private void makeNumeralArrayFromLiteral(String literal) {
-
     int length = literal.length();
     numerals = new RomanNumeral[length];
     for (int i = 0; i < length; i++) {
@@ -50,11 +46,11 @@ public class RomanNumeralConverter {
   }
 
   public String asRoman() {
-
     String roman = "";
     for (RomanNumeral numeral : goThroughAllPossibleRomanNumeralsInDescendingOrder()) {
       roman += addAppropriateNumberOf(numeral);
     }
+
     return roman;
   }
 
@@ -63,11 +59,11 @@ public class RomanNumeralConverter {
   }
 
   private String addAppropriateNumberOf(RomanNumeral numeral) {
-
     String result = "";
     for (int i = 0; i < numberOfNumeralsInCurrentValue(numeral); i++) {
       result += numeral.stringValue();
     }
+
     currentValue -= numberOfNumeralsInCurrentValue(numeral) * numeral.intValue();
     return result;
   }
@@ -91,17 +87,14 @@ public class RomanNumeralConverter {
     }
 
     public int intValue() {
-
       return intValue;
     }
 
     public String stringValue() {
-
       return stringValue;
     }
 
     public boolean isGreaterThan(RomanNumeral other) {
-
       return intValue > other.intValue;
     }
 
