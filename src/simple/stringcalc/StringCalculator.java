@@ -18,7 +18,6 @@ public class StringCalculator {
   }
 
   private String findDelimiters(final String numbers) {
-
     if (!firstLineIsDelimiterLine(numbers)) {
       return DEFAULT_DELIMITERS;
     }
@@ -27,7 +26,6 @@ public class StringCalculator {
   }
 
   private boolean firstLineIsDelimiterLine(final String numbers) {
-
     return numbers.startsWith("//");
   }
 
@@ -48,22 +46,18 @@ public class StringCalculator {
     return 0;
   }
 
-  private void validate(final Integer result) {
 
+  private void validate(final Integer result) {
     if (result < 0) {
       throw new IllegalArgumentException("Negative numbers are not allowed!");
     }
   }
 
   private boolean isNotEmpty(final String number) {
-
     return !isEmpty(number);
   }
 
   private boolean isEmpty(final String number) {
-
     return "".equals(number);
   }
-
-
 }
