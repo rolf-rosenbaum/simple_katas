@@ -5,11 +5,21 @@ import java.util.EnumSet;
 public class RomanNumeralConverter {
 
   private RomanNumeral[] numerals;
+  private int decimal;
 
   private int currentValue;
 
-  public RomanNumeralConverter(final String literal) {
-    makeNumeralArrayFromLiteral(literal);
+  public RomanNumeralConverter(final String romanNumber) {
+    computeDecimalFromRomanNumber(romanNumber);
+
+  }
+
+  private void computeDecimalFromRomanNumber(String romanNumber) {
+    makeNumeralArrayFromRomanNumber(romanNumber);
+
+    for (int i = 0; i < numerals.length; i++) {
+      decimal += getActualValueInContext(i);
+    }
   }
 
   public RomanNumeralConverter(final int value) {
@@ -17,11 +27,7 @@ public class RomanNumeralConverter {
   }
 
   public int asDecimal() {
-    int sum = 0;
-    for (int i = 0; i < numerals.length; i++) {
-      sum += getActualValueInContext(i);
-    }
-    return sum;
+    return decimal;
   }
 
   private int getActualValueInContext(final int index) {
@@ -37,7 +43,7 @@ public class RomanNumeralConverter {
     return index < numerals.length - 1 && numerals[index + 1].isGreaterThan(numerals[index]);
   }
 
-  private void makeNumeralArrayFromLiteral(String literal) {
+  private void makeNumeralArrayFromRomanNumber(String literal) {
     int length = literal.length();
     numerals = new RomanNumeral[length];
     for (int i = 0; i < length; i++) {
@@ -72,6 +78,7 @@ public class RomanNumeralConverter {
     return currentValue / numeral.intValue();
   }
 
+  @SuppressWarnings("UnusedDeclaration")
   static enum RomanNumeral {
     M("M", 1000), CM("CM", 900), D("D", 500), CD("CD", 400), C("C", 100), XC("XC", 90), L("L", 50), XL("XL", 40), X("X",
         10), IX("IX", 9), V("V", 5), IV("IV", 4), I("I", 1);
